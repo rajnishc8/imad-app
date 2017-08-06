@@ -21,6 +21,55 @@ var articleOne = {
                 <p> `
 };
 
+var articles = {
+    'article-one' : {
+        title : 'Article One | Rc',
+        heading : 'Article One ',
+        date : 'Aug 6, 2017',
+        content:`
+                    <p>
+                       First article 1-1
+                    <p>
+                    <p>
+                       First article 1-2
+                    <p>
+                    <p>
+                       First article 1-3
+                    <p> `
+    },
+    'article-two' : {
+        title : 'Article One | Rc',
+        heading : 'Article One ',
+        date : 'Aug 16, 2017',
+        content:`
+                    <p>
+                       First article 2-1
+                    <p>
+                    <p>
+                       First article 2-2
+                    <p>
+                    <p>
+                       First article 2-3
+                    <p> `
+    },
+    'article-three' : {
+        title : 'Article One | Rc',
+        heading : 'Article One ',
+        date : 'Aug 26, 2017',
+        content:`
+                    <p>
+                       First article 3-1
+                    <p>
+                    <p>
+                       First article 3-2
+                    <p>
+                    <p>
+                       First article 3-3
+                    <p> `
+    }
+};
+
+
 function createTemplate (data) {
     var title   = data.title;
     var date    = data.date;
@@ -62,17 +111,16 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res) {
+app.get('/articleone', function (req, res) {
   //res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
   res.send(createTemplate(articleOne));
 });
 
-app.get('/article-two', function (req, res) {
-  res.send('Article Two');
-});
-
-app.get('/article-three', function (req, res) {
-  res.send('Article Three');
+app.get('/:articleName', function (req, res) {
+  //articleName == article-one
+  //articles[articleName] == {} content object for article one
+  var articleName = req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
 });
 
 app.get('/article-four', function (req, res) {
@@ -82,7 +130,6 @@ app.get('/article-four', function (req, res) {
 app.get('/article-five', function (req, res) {
   res.send('Article Five');
 });
-
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
