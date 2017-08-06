@@ -83,8 +83,6 @@ submit.onclick = function ()
     request.send(null);
 }
 
-element.innerHTML = 'New Value';
-
 //Move the image
 var img = document.getElementById('ProfilePic');
 var marginLeft = 0;
