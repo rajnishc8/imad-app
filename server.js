@@ -117,7 +117,7 @@ app.get('/profile', function (req, res) {
 });
 
 app.get('/indexold', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+  res.sendFile(path.join(__dirname, 'ui', 'indexold.html'));
 });
 
 
