@@ -3,20 +3,40 @@ console.log('Loaded!');
 //Change the text of the main-text div
 var element = document.getElementById('main-text');
 var button  = document.getElementById('counter');
-var counter = 0;
 
 button.onclick = function ()
 {
     // make a request to the counter endpoint
+    // Create a request object
+    var request = new XMLHttpRequest();
     
     // capture the response and store it in a variable
+    request.onreadystatechange = function () {
+          if (request.readyState === XMLHttpRequest.DONE) {
+              // Take some action
+              if (request.status === 200) {
+                  //render the variable in the correct span
+                  var counter = request.responseText;
+                  var span = document.getElementById('count');
+                  span.innerHTML = counter.toString();
+                  //submit.value = 'Sucess!';
+              } else if (request.status === 403) {
+                  //submit.value = 'Invalid credentials. Try again?';
+              } else if (request.status === 500) {
+                  alert('Something went wrong on the server');
+                  //submit.value = 'Login';
+              } else {
+                  alert('Something went wrong on the server');
+                  //submit.value = 'Login';
+              }
+              //loadLogin();
+          }  
+          // Not done yet
+        };
     
-    //render the variable in the correct span
-    counter = counter +1;
-    var span = document.getElementById('count');
-    span.innerHTML = counter.toString();
-    
-   var interval = setInterval(moveRight, 50);
+    //Make the request
+    request.open('GET', 'http://rajnishc8.imad.hasura-app.io/counter', true);
+    request.send(null);
 }
 
 element.innerHTML = 'New Value';
