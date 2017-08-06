@@ -61,6 +61,8 @@ submit.onclick = function ()
                   {
                       list += '<li>' + names[i] + '</li>'; 
                   }
+                  var ul = document.getElementById('namelist');
+                  ul.innerHTML = list;
                   //submit.value = 'Sucess!';
               } else if (request.status === 403) {
                   //submit.value = 'Invalid credentials. Try again?';
