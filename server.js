@@ -120,7 +120,7 @@ app.get('/submit-name', function (req, res) {  //submit-name=xxxx
   
   names.push(name)
   //JSON: 
-  res.send(JSON.stringfy(names));
+  res.send(JSON.stringify(names));
 });
 
 
