@@ -111,6 +111,16 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
+
+app.get('/profile', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'profile.html'));
+});
+
+app.get('/indexold', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+
+
 app.get('/articleone', function (req, res) {
   //res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
   res.send(createTemplate(articleOne));
