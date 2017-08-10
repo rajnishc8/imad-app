@@ -105,7 +105,7 @@ function createTemplate (data) {
                   ${heading}
               </h3>
               <div>
-                    ${date}
+                    ${date.toDateString()}
               </div>
               <div>
                     ${content}
@@ -179,6 +179,33 @@ app.get('/articlefour', function (req, res) {
 
 app.get('/articlefive', function (req, res) {
   res.send('Article Five');
+});
+
+app.get('/article/:articleName', function (req, res) {
+  //articleName == article-one
+  //articles[articleName] == {} content object for article one
+  var articleName = req.params.articleName;
+  
+  pool.query("SELECT * from article WHERE title = $1", [req.params.articleName],  function(err, result) {
+    if (err) {
+        console.error('Error executing query', err.stack);
+        res.status(500).send(err.toString());
+    } else   {
+        if(result.rows.length === 0)
+        {
+            res.status(400).send("Article not found");
+        }
+        else
+        {
+           //res.send(JSON.stringify(result));
+           //res.send(JSON.stringify(result.rows));
+           var articleData =  result.rows[0];
+           res.send(JSON.stringify(createTemplate(articleData)));
+        }
+    }
+    console.log(result.rows)
+  });
+  
 });
 
 app.get('/:articleName', function (req, res) {
