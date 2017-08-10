@@ -181,7 +181,7 @@ app.get('/articlefive', function (req, res) {
   res.send('Article Five');
 });
 
-app.get('/article/:articleName', function (req, res) {
+app.get('/articles/:articleName', function (req, res) {
   //articleName == article-one
   //articles[articleName] == {} content object for article one
   var articleName = req.params.articleName;
