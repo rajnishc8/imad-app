@@ -2,6 +2,8 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 var Pool = require('pg').Pool;
+var crypto = require('crypto');
+
 var config = {
   user: 'rajnishc8',
   host: 'db.imad.hasura-app.io',
@@ -116,6 +118,20 @@ function createTemplate (data) {
     `;
     return htmlTemplate;
 }
+
+
+function hash (input, salt) {
+    // How do we create a hash?
+    var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
+    return hashed.toString('hex');
+    //return ["pbkdf2", "10000", salt, hashed.toString('hex')].join('$');
+}
+
+app.get('/hash/:input', function(req, res) {
+   var hashedString = hash(req.params.input, 'Salt No Pepper');
+   res.send(hashedString);
+});
+
 
 var pool = new Pool(config);
 app.get('/test-db', function (req, res) {
