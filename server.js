@@ -3,6 +3,8 @@ var morgan = require('morgan');
 var path = require('path');
 var Pool = require('pg').Pool;
 var crypto = require('crypto');
+var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var config = {
   user: 'rajnishc8',
@@ -131,6 +133,7 @@ app.get('/hash/:input', function(req, res) {
    var hashedString = hash(req.params.input, 'Salt No Pepper');
    res.send(hashedString);
 });
+
 
 
 var pool = new Pool(config);
