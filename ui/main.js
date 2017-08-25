@@ -85,6 +85,47 @@ submit.onclick = function ()
     request.send(null);
 }
 
+//Submit user name
+var submit_cred = document.getElementById('submit_btn_cred');
+submit_cred.onclick = function ()
+{
+    //Make a request to the server and send the name
+    var request = new XMLHttpRequest();
+    
+    // capture the response and store it in a variable
+    request.onreadystatechange = function () {
+          if (request.readyState === XMLHttpRequest.DONE) {
+              // Take some action
+              if (request.status === 200) {
+                  alert('Logged in Success');
+                  //submit.value = 'Sucess!';
+              } else if (request.status === 403) {
+                  alert('Username/password incorrect');
+                  //submit.value = 'Invalid credentials. Try again?';
+              } else if (request.status === 500) {
+                  alert('500 Something went wrong on the server');
+                  //submit.value = 'Login';
+              } else {
+                  alert('XXX Something went wrong on the server');
+                  //submit.value = 'Login';
+              }
+              //loadLogin();
+          }  
+          // Not done yet
+        };
+    
+    //Make the request
+    var  username = document.getElementById('username').value;
+    var  password = document.getElementById('password').value;
+    console.log(username);
+    console.log(password);
+    request.open('POST', 'http://rajnishc8.imad.hasura-app.io/login', true);
+    //request.send(null);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(JSON.stringify({username: username, password: password}));  
+}
+
+
 //Move the image
 var img = document.getElementById('ProfilePic');
 var marginLeft = 0;
