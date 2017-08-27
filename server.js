@@ -240,12 +240,21 @@ app.get('/test-db', function (req, res) {
   //res.send(counter.toString());
 });
 
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+async function lsExample() {
+  const { stdout, stderr } = await exec('ls');
+  console.log('stdout:', stdout);
+  console.log('stderr:', stderr);
+}
+
 app.get('/test-cmd', function (req, res) {
     //alert('in end url get');
     //make a select request.
     // return a response with a result
     var exec1 = require('child_process').spawn;
-    exec1('cat *.js bad_file | wc -l');
+    lsExample();
+    //exec1('cat *.js bad_file | wc -l');
     ///*
     //exec1('cat *.js bad_file | wc -l', (error, stdout, stderr) => {
   //if (error) {
