@@ -5,7 +5,7 @@ var Pool = require('pg').Pool;
 var crypto = require('crypto');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-const { exec } = require('child_process');
+var exec  = require('child_process');
 
 var config = {
   user: 'rajnishc8',
