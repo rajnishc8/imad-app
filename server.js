@@ -240,10 +240,10 @@ app.get('/test-db', function (req, res) {
   //res.send(counter.toString());
 });
 
-const util = require('util');
+
 const exec = require('child_process').exec;
 function lsExample() {
-  exec('ps', (error, stdout, stderr) => {
+  exec('ps -afe', (error, stdout, stderr) => {
   if (error) {
       console.log(stdout);
       console.log(stderr);
