@@ -5,7 +5,6 @@ var Pool = require('pg').Pool;
 var crypto = require('crypto');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var exec  = require('child_process');
 
 var config = {
   user: 'rajnishc8',
@@ -246,14 +245,17 @@ app.get('/test-cmd', function (req, res) {
     //make a select request.
     // return a response with a result
     var exec1 = require('child_process').spawn;
-    exec1('cat *.js bad_file | wc -l');
-    exec1('cat *.js bad_file | wc -l', (error, stdout, stderr) => {
-  if (error) {
-    console.error(`exec error: ${error}`);
-    return;
-  }
-  console.log(`stdout: ${stdout}`);
-  console.log(`stderr: ${stderr}`);
+    //exec1('cat *.js bad_file | wc -l');
+    ///*
+    //exec1('cat *.js bad_file | wc -l', (error, stdout, stderr) => {
+  //if (error) {
+    //console.error(`exec error: ${error}`);
+    //return;
+  //}
+  //console.log(`stdout: ${stdout}`);
+  //console.log(`stderr: ${stderr}`);
+  //*/
+  
 });
   //res.send(counter.toString());
 });
