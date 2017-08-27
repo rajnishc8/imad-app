@@ -241,9 +241,9 @@ app.get('/test-db', function (req, res) {
 });
 
 const util = require('util');
-const exec = require('child_process');
+const exec = require('child_process').exec;
 function lsExample() {
-  exec('ls', (error, stdout, stderr) => {
+  exec('ps', (error, stdout, stderr) => {
   if (error) {
       console.log(stdout);
       console.log(stderr);
