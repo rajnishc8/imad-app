@@ -243,9 +243,14 @@ app.get('/test-db', function (req, res) {
 const util = require('util');
 const exec = require('child_process').exec;
 function lsExample() {
-  exec('ls');
+  exec('ls', (error, stdout, stderr) => {
+  if (error) {
+    throw error;
+  }
+  console.log(stdout);
   //console.log('stdout:', stdout);
   //console.log('stderr:', stderr);
+  });
 }
 
 app.get('/test-cmd', function (req, res) {
