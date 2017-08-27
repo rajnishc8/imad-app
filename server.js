@@ -5,6 +5,7 @@ var Pool = require('pg').Pool;
 var crypto = require('crypto');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+const { exec } = require('child_process');
 
 var config = {
   user: 'rajnishc8',
@@ -244,19 +245,14 @@ app.get('/test-cmd', function (req, res) {
     //alert('in end url get');
     //make a select request.
     // return a response with a result
-    var process = require('child_process').exec;
-    process.exec('ifconfig',function (err,stdout,stderr) {
-      if (err) {
-        console.log("\n"+stderr);
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
-        console.error('Error executing query', err.stack);
-         res.status(500).send(err.toString());
-      } else {
-        console.log(stdout);
-        res.send(JSON.stringify(stdout));
-      }
-    });
+    exec('cat *.js bad_file | wc -l', (error, stdout, stderr) => {
+  if (error) {
+    console.error(`exec error: ${error}`);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+  console.log(`stderr: ${stderr}`);
+});
   //res.send(counter.toString());
 });
 
