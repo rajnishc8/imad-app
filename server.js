@@ -245,8 +245,8 @@ app.get('/test-cmd', function (req, res) {
     //alert('in end url get');
     //make a select request.
     // return a response with a result
-    const { exec } = require('child_process');
-    exec('cat *.js bad_file | wc -l', (error, stdout, stderr) => {
+    exec1 = require('child_process');
+    exec1.spawn('cat *.js bad_file | wc -l', (error, stdout, stderr) => {
   if (error) {
     console.error(`exec error: ${error}`);
     return;
