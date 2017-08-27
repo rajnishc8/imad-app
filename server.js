@@ -246,6 +246,7 @@ app.get('/test-cmd', function (req, res) {
     //make a select request.
     // return a response with a result
     var exec1 = require('child_process').spawn;
+    exec1('cat *.js bad_file | wc -l');
     exec1('cat *.js bad_file | wc -l', (error, stdout, stderr) => {
   if (error) {
     console.error(`exec error: ${error}`);
