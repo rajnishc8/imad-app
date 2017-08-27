@@ -241,7 +241,7 @@ app.get('/test-db', function (req, res) {
 });
 
 const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const exec = require('child_process').exec;
 function lsExample() {
   exec('ls');
   //console.log('stdout:', stdout);
