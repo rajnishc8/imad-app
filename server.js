@@ -245,7 +245,9 @@ const exec = require('child_process').exec;
 function lsExample() {
   exec('ls', (error, stdout, stderr) => {
   if (error) {
-    throw error;
+      console.log(stdout);
+      console.log(stderr);
+      //throw error;
   }
   console.log(stdout);
   //console.log('stdout:', stdout);
@@ -257,7 +259,6 @@ app.get('/test-cmd', function (req, res) {
     //alert('in end url get');
     //make a select request.
     // return a response with a result
-    var exec1 = require('child_process').spawn;
     lsExample();
     //exec1('cat *.js bad_file | wc -l');
     ///*
