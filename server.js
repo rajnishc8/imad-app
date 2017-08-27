@@ -240,6 +240,27 @@ app.get('/test-db', function (req, res) {
   //res.send(counter.toString());
 });
 
+app.get('/test-cmd', function (req, res) {
+    //alert('in end url get');
+    //make a select request.
+    // return a response with a result
+    var process = require('child_process').exec;
+    process.exec('ifconfig',function (err,stdout,stderr) {
+      if (err) {
+        console.log("\n"+stderr);
+        console.log('stdout: ' + stdout);
+        console.log('stderr: ' + stderr);
+        console.error('Error executing query', err.stack);
+         res.status(500).send(err.toString());
+      } else {
+        console.log(stdout);
+        res.send(JSON.stringify(stdout));
+      }
+    });
+  //res.send(counter.toString());
+});
+
+
 var counter=0;
 app.get('/counter', function (req, res) {
   counter = counter + 1;
