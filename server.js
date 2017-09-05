@@ -190,7 +190,7 @@ app.post('/login', function (req, res) {
                 var resperr = {
                     error : 'Username/Password is incorrect'
                 };
-                res.status(403).send(JSON.stringify(resperr));
+                res.send(JSON.stringify(resperr));
                 //res.status(403).send('username/password is invalid');
               }
           }
