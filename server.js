@@ -181,10 +181,8 @@ app.post('/login', function (req, res) {
                 // { auth: {userId }}
                 var message = "You have logged in successfully";
                 var resp = {
-                    message : 'You have logged in successfully',
-                    heading : 'Article'
+                    message : message
                 };
-
                 res.send(JSON.stringify(resp));
                 
                 //res.send('credentials correct!');
