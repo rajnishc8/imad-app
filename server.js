@@ -180,7 +180,12 @@ app.post('/login', function (req, res) {
                 // internally, on the server side, it maps the session id to an object
                 // { auth: {userId }}
                 var message = "You have logged in successfully";
-                res.send(JSON.stringify(message));
+                var resp = {
+                    message : 'You have logged in successfully',
+                    heading : 'Article'
+                };
+
+                res.send(JSON.stringify(resp));
                 
                 //res.send('credentials correct!');
                 
