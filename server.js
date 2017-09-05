@@ -166,7 +166,11 @@ app.post('/login', function (req, res) {
           res.status(500).send(err.toString());
       } else {
           if (result.rows.length === 0) {
-              res.status(403).send('username/password is invalid');
+              var resperr = {
+                    error : 'Username/Password is incorrect'
+                };
+              res.status(403).send(JSON.stringify(resperr));
+              //res.status(403).send('username/password is invalid');
           } else {
               // Match the password
               var dbString = result.rows[0].password;
@@ -187,10 +191,10 @@ app.post('/login', function (req, res) {
                 //res.send('credentials correct!');
                 
               } else {
-                var resperr = {
+                var resperr1 = {
                     error : 'Username/Password is incorrect'
                 };
-                res.send(JSON.stringify(resperr));
+                res.status(403).send(JSON.stringify(resperr1));
                 //res.status(403).send('username/password is invalid');
               }
           }
