@@ -306,7 +306,7 @@ app.get('/get-articles', function (req, res) {
   
   //get all article's
   //pool.query('SELECT * FROM article ORDER BY date DESC', function (err, result) {
-  pool.query("SELECT * from article "  function(err, result) {
+  pool.query("SELECT * from article ",  function(err, result) {
     if (err) {
         console.error('Error executing query', err.stack);
         res.status(500).send(err.toString());
