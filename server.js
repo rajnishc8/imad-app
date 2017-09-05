@@ -150,9 +150,19 @@ app.post('/create-user', function (req, res) {
    pool.query('INSERT INTO "user" (username, password) VALUES ($1, $2)', [username, dbString], function (err, result) {
       if (err) {
           console.error('Error executing Insert query', err.stack);
-          res.status(500).send(err.toString());
+          var message = "error: " + err.toString();
+          var resp = {
+                    error : message
+          };
+          res.status(500).send(JSON.stringify(resp));
+          //res.status(500).send(err.toString());
       } else {
-          res.send('User successfully created: ' + username);
+          var message = "User successfully created" + username;
+          var resp = {
+                    message : message
+          };
+          res.send(JSON.stringify(resp));
+          //res.send('User successfully created: ' + username);
       }
    });
 });
