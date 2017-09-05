@@ -157,7 +157,7 @@ app.post('/create-user', function (req, res) {
           res.status(500).send(JSON.stringify(resp));
           //res.status(500).send(err.toString());
       } else {
-          var message = "User successfully created " + username;
+          var message = "User successfully created: " + username;
           var resp = {
                     message : message
           };
@@ -263,6 +263,8 @@ app.get('/test-db', function (req, res) {
 });
 
 
+
+
 const exec = require('child_process').exec;
 function lsExample() {
   exec('ps -afe', (error, stdout, stderr) => {
@@ -297,6 +299,36 @@ app.get('/test-cmd', function (req, res) {
   //res.send(counter.toString());
 });
 
+
+app.get('/get-articles', function (req, res) {
+  //articleName == article-one
+  //articles[articleName] == {} content object for article one
+  
+  //get all article's
+  //pool.query('SELECT * FROM article ORDER BY date DESC', function (err, result) {
+  pool.query("SELECT * from article "  function(err, result) {
+    if (err) {
+        console.error('Error executing query', err.stack);
+        res.status(500).send(err.toString());
+    } else   {
+        if(result.rows.length === 0)
+        {
+            res.status(400).send("Article not found");
+        }
+        else
+        {
+           //res.send(JSON.stringify(result));
+           //res.send(JSON.stringify(result.rows));
+           //var articleData =  result.rows[0];
+           //res.send(JSON.stringify(createTemplate(articleData)));
+           res.setHeader('Content-Type', 'application/json');
+           res.send(JSON.stringify(result.rows));
+        }
+    }
+    console.log(result.rows)
+  });
+  
+});
 
 var counter=0;
 app.get('/counter', function (req, res) {
